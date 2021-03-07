@@ -18,41 +18,41 @@
 </template>
 
 <script>
-import {mixin} from "../mixins/index";
-import {getLoginStatus} from "../api/index";
+import {mixin} from '../mixins/index'
+import {getLoginStatus} from '../api/index'
 export default {
-  mixins:[mixin],
-  data: function(){
+  mixins: [mixin],
+  data: function () {
     return {
-      ruleForm:{
-        username: "admin",
-        password: "88888888"
+      ruleForm: {
+        username: 'admin',
+        password: '88888888'
       },
-      rules:{
-        username:[
-          {required:true,message:"请输入用户名",trigger:"blur"}
+      rules: {
+        username: [
+          {required: true, message: '请输入用户名', trigger: 'blur'}
         ],
-        password:[
-          {required:true,message:"请输入密码",trigger:"blur"}
+        password: [
+          {required: true, message: '请输入密码', trigger: 'blur'}
         ]
       }
-    };
+    }
   },
-  methods:{
-    submitForm(){
-      let params = new URLSearchParams();
-      params.append("name",this.ruleForm.username);
-      params.append("password",this.ruleForm.password);
+  methods: {
+    submitForm () {
+      let params = new URLSearchParams()
+      params.append('name', this.ruleForm.username)
+      params.append('password', this.ruleForm.password)
       getLoginStatus(params)
-        .then((res) =>{
-          if(res.code == 1){
-            localStorage.setItem('userName',this.ruleForm.username);
-            this.$router.push("/Info");
-            this.notify("登录成功","success");
-          }else{
-            this.notify("登录失败","error");
+        .then((res) => {
+          if (res.code == 1) {
+            localStorage.setItem('userName', this.ruleForm.username)
+            this.$router.push('/Info')
+            this.notify('登录成功', 'success')
+          } else {
+            this.notify('登录失败', 'error')
           }
-        });
+        })
     }
   }
 }

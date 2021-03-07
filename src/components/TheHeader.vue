@@ -16,7 +16,7 @@
             </div>
             <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    {{userName}}                    
+                    {{userName}}
                     <i class="el-icon-caret-bottom"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
@@ -28,58 +28,58 @@
 </template>
 
 <script>
-import bus from "../assets/js/bus";
+import bus from '../assets/js/bus'
 export default {
-    data(){
-        return{
-            collapse: false,
-            fullscreen:false
-        }
-    },
-    computed:{
-        userName(){
-            return localStorage.getItem('userName');
-        }
-    },
-    methods:{
-        //侧边栏折叠
-        collapseChange(){
-            this.collapse = !this.collapse;
-            bus.$emit('collapse',this.collapse);
-        },
-        //全屏事件
-        handleFullScreen(){
-            if(this.fullscreen){
-                if(document.exitFullscreen){
-                   document.exitFullscreen();
-                }else if(document.webkitCancelFullScreen){      //safari 、Chrome
-                    document.webkitCancelFullScreen();
-                }else if (document.mozCancelFullScreen){        //firefox
-                    document.mozCancelFullScreen();
-                }else if(document.msExitFullScreen){            //ie
-                    document.msExitFullScreen();
-                }               
-            }else{
-                let element = document.documentElement;
-                if(element.requestFullscreen){
-                    element.requestFullscreen();
-                }else if(element.webkitRequestFullScreen){      //safari 、Chrome
-                    element.webkitRequestFullScreen();
-                }else if(element.mozRequestFullScreen){         //firefox
-                    element.mozRequestFullScreen();
-                }else if (element.msRequestFullScreen){         //ie
-                    element.msRequestFullScreen();
-                }
-            }
-            this.fullscreen = !this.fullscreen;
-        },
-        handleCommand(command){
-            if(command == "logout"){
-                localStorage.removeItem('userName');
-                this.$router.push("/");
-            }
-        }
+  data () {
+    return {
+      collapse: false,
+      fullscreen: false
     }
+  },
+  computed: {
+    userName () {
+      return localStorage.getItem('userName')
+    }
+  },
+  methods: {
+    // 侧边栏折叠
+    collapseChange () {
+      this.collapse = !this.collapse
+      bus.$emit('collapse', this.collapse)
+    },
+    // 全屏事件
+    handleFullScreen () {
+      if (this.fullscreen) {
+        if (document.exitFullscreen) {
+          document.exitFullscreen()
+        } else if (document.webkitCancelFullScreen) { // safari 、Chrome
+          document.webkitCancelFullScreen()
+        } else if (document.mozCancelFullScreen) { // firefox
+          document.mozCancelFullScreen()
+        } else if (document.msExitFullScreen) { // ie
+          document.msExitFullScreen()
+        }
+      } else {
+        let element = document.documentElement
+        if (element.requestFullscreen) {
+          element.requestFullscreen()
+        } else if (element.webkitRequestFullScreen) { // safari 、Chrome
+          element.webkitRequestFullScreen()
+        } else if (element.mozRequestFullScreen) { // firefox
+          element.mozRequestFullScreen()
+        } else if (element.msRequestFullScreen) { // ie
+          element.msRequestFullScreen()
+        }
+      }
+      this.fullscreen = !this.fullscreen
+    },
+    handleCommand (command) {
+      if (command == 'logout') {
+        localStorage.removeItem('userName')
+        this.$router.push('/')
+      }
+    }
+  }
 }
 </script>
 
